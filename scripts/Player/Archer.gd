@@ -23,6 +23,7 @@ var shoting_recharge = false
 
 func _physics_process(delta: float) -> void:
 	# movimentação base
+	
 	MovePlayer(delta)
 	
 	# ativa dash	
