@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/enemy_detect_area.gd" id="1_a4lqg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ajw1"]
-radius = 153.76
+radius = 294.45
 
 [node name="EnemyDetectArea" type="Area2D"]
 position = Vector2(0, 1)

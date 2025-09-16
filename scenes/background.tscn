@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4he41igw7o84"]
+[gd_scene load_steps=5 format=3 uid="uid://d4he41igw7o84"]
 
 [ext_resource type="PackedScene" uid="uid://bmpl4yem60uf6" path="res://prefabs/Archer.tscn" id="1_ixs1n"]
 [ext_resource type="Script" path="res://CommandSystem/CommandSystem.gd" id="1_u3rg6"]
 [ext_resource type="Script" path="res://CommandSystem/Commands.gd" id="3_5la77"]
+[ext_resource type="PackedScene" uid="uid://sfthdmw8xcgf" path="res://prefabs/Skeleton.tscn" id="4_hain3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u3rg6")
@@ -25,3 +26,14 @@ offset_bottom = 639.0
 script = ExtResource("3_5la77")
 
 [node name="Archer" parent="." instance=ExtResource("1_ixs1n")]
+
+[node name="Skeleton" parent="." instance=ExtResource("4_hain3")]
+
+[node name="Skeleton2" parent="." instance=ExtResource("4_hain3")]
+position = Vector2(1054, 590)
+
+[node name="Skeleton3" parent="." instance=ExtResource("4_hain3")]
+position = Vector2(1077, 312)
+
+[node name="Skeleton4" parent="." instance=ExtResource("4_hain3")]
+position = Vector2(67, 527)

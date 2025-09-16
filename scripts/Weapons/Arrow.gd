@@ -4,6 +4,7 @@ class_name Arrow
 # boolean stats
 var inGame = false
 var atacking = false
+var target: Node2D = null
 
 # Stats
 var damage = 10.0
@@ -12,12 +13,17 @@ var atk_speed = 900
 
 
 func _physics_process(delta: float) -> void:
-	position += transform.x * atk_speed * delta
-	pass
+	if target and is_instance_valid(target):
+		var direction = (target.global_position - global_position).normalized()
+		position += direction * atk_speed * delta
+		rotation = direction.angle()
+	else:
+		# se o target sumiu, destrói a flecha
+		queue_free()
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemy"):
-		area.queue_free()
-	queue_free()
-	pass # Replace with function body.
+func _on_body_entered(body: Node) -> void:
+	if is_instance_valid(target) and body == target:
+		target.queue_free()
+		queue_free()
+		print("acertou")

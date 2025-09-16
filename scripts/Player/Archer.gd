@@ -78,6 +78,10 @@ func Arrow_Shoot():
 	shoting = true
 	$AnimatedSprite2D.play("basic_atack")
 	get_tree().create_timer(3.0).timeout
+ 
 	var arrow = Arrow.instantiate()
 	arrow.global_position = $Bow.global_position
+
+	arrow.target = $EnemyDetectArea.enemy_target 
+	
 	owner.add_child(arrow)
