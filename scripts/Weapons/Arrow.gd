@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if is_instance_valid(target) and body == target:
-		target.queue_free()
+		if target.has_method("take_damage"):
+			target.take_damage(damage)
 		queue_free()
 		print("acertou")

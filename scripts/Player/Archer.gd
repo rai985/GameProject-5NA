@@ -21,12 +21,13 @@ var rotated = 0.0
 var shoting = false
 var shoting_recharge = false
 
+func _ready():
+	super._ready() 
+
 func _physics_process(delta: float) -> void:
-	# movimentação base
 	
 	MovePlayer(delta)
 	
-	# ativa dash	
 	if  dir != Vector2.ZERO:
 		if Input.is_action_just_pressed("Dash") and not dashing and not dash_recharge:
 			start_dash()
@@ -35,16 +36,14 @@ func _physics_process(delta: float) -> void:
 			dash_count += 1
 			dash_recharge = false
 		
-		# atualiza dashddd
 		if dashing:
 			global_position += dir.normalized() * DASH_SPEED * delta
 			dash_timer -= delta
 			if dash_timer <= 0:
 				dashing = false
 	
-	# rotação do dasha
 	if rotating:
-		var step = rotation_speed * delta
+		var step = rotation_speed * delta 
 		$AnimatedSprite2D.rotation_degrees += step
 		rotated += step
 		if rotated >= 360:
@@ -66,13 +65,10 @@ func start_dash():
 		dash_timer = DASH_TIME
 		dash_count = 0
 		start_rotation()
-		
-#		asdas
 
 func start_rotation():
 	rotating = true
 	rotated = 0.0
-
 
 func Arrow_Shoot():
 	shoting = true
@@ -85,3 +81,9 @@ func Arrow_Shoot():
 	arrow.target = $EnemyDetectArea.enemy_target 
 	
 	owner.add_child(arrow)
+
+func die():
+	set_physics_process(false)
+	$AnimatedSprite2D.play("Death")
+	await $AnimatedSprite2D.animation_finished
+	super.die()

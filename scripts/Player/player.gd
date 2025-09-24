@@ -2,15 +2,27 @@ extends CharacterBody2D
 
 class_name Player
 
+signal healthChanged
+
 #status base
 var Level = 1
-var Hp = 100
 var Spd = 600
 var Xp = 0
+
+
+@export var max_health: int = 100
+@onready var current_health: int = max_health:
+	
+	set(value):
+		current_health = clampi(value, 0, max_health)
+		healthChanged.emit()
 
 #variaveis de movimentação
 var dir = Vector2()
 
+func _ready():
+
+	current_health = max_health
 
 func _process(delta: float) -> void:	
 	pass
@@ -41,11 +53,17 @@ func MovePlayer(delta):
 	
 	global_position += dir.normalized() * Spd * delta
 
-#calcula xp necessaria para upar de nivel
+func take_damage(amount: int):
+	current_health -= amount
+	if current_health <= 0:
+		die()
+		
+func die():
+	queue_free()
+	
 func CalcExpLevel(Level):
 	return 20 * Level * Level
 
-#calcula o xp total para subir de nivel
 func CalcExpNextLevel(Xp):
 	var required = CalcExpLevel(Level)
 	return max(required - Xp, 0)

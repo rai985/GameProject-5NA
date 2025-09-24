@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7xffuvahokqn"]
 
-[ext_resource type="Script" path="res://scripts/Player/Skeleton.gd" id="1_suf3o"]
+[ext_resource type="Script" path="res://scripts/Enemy/Skeleton.gd" id="1_suf3o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g5mpn"]
 animations = []
